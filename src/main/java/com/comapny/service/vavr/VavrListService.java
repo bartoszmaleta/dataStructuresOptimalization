@@ -1,4 +1,4 @@
 package com.comapny.service.vavr;
 
-public class vavrListService {
+public class VavrListService {
 }
