@@ -1,5 +1,6 @@
 package com.comapny.service.list;
 
+import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 public class UtilListService {
@@ -24,5 +25,21 @@ public class UtilListService {
         return String.join(", ", args);
     }
 
+    // Iterate with index
+    public java.util.List<String> legacyIteratWithIndex1(String... args) {
+        java.util.List<String> result = new ArrayList<>();
 
+        for (int i = 0; i < args.length; i++) {
+            result.add(i + ". " + args[i]);
+        }
+        return result;
+    }
+
+
+    public java.util.List<String> legacyIterateWithIndex2(String... args) {
+        return java.util.stream.IntStream
+                .range(0, args.length)
+                .mapToObj(index -> index + ". " + args[index])
+                .collect(Collectors.toList());
+    }
 }
