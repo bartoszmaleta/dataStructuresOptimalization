@@ -1,6 +1,9 @@
 package com.comapny.service.vavr;
 
 import io.vavr.collection.List;
+import io.vavr.control.Option;
+
+import java.util.function.Function;
 
 public class VavrListService {
 
@@ -24,6 +27,13 @@ public class VavrListService {
         return List
                 .of(args)
                 .zipWithIndex((arg, index) -> index + ". " + arg);
+    }
+
+    // FlatMap
+    public io.vavr.collection.Seq vavrFlatMap(io.vavr.collection.Seq<Option<String>> args) {
+        return args
+                .flatMap(Function.identity()) // same as .flatMap(arg -> arg)
+                .map(String::toLowerCase);
     }
 
 }
