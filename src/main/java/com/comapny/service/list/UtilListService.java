@@ -1,5 +1,7 @@
 package com.comapny.service.list;
 
+import com.comapny.factory.Person;
+
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -69,6 +71,14 @@ public class UtilListService {
                 .flatMap(Optional::stream)
                 .map(String::toLowerCase)
                 .collect(Collectors.toList());
+    }
+
+    // Object folding
+    public Person legacyFold(java.util.List<String> args) {
+        Person person = new Person(args.get(0));
+        args.remove(0);
+        args.forEach(person::addSkill);
+        return person;
     }
 
 }

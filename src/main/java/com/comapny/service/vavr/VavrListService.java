@@ -1,5 +1,6 @@
 package com.comapny.service.vavr;
 
+import com.comapny.factory.Person;
 import io.vavr.collection.List;
 import io.vavr.control.Option;
 
@@ -34,6 +35,14 @@ public class VavrListService {
         return args
                 .flatMap(Function.identity()) // same as .flatMap(arg -> arg)
                 .map(String::toLowerCase);
+    }
+
+    // Object folding
+    public Person vavrFold(io.vavr.collection.Seq<String> args) {
+        return args
+                .tail()
+//                .foldLeft(new Person(args.head()), Person::addSkill);   // ANOTHER SOLUTION
+                .foldLeft(new Person(args.head()), (person, arg) -> person.addSkill(arg));
     }
 
 }
